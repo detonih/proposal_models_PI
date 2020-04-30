@@ -1,10 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-    const Post = sequelize.define('Post', {
-        titulo: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        descricao: {
+    const Comentario = sequelize.define('Comentario', {
+        caminho: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -13,5 +9,5 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: true,
         paranoid: true
       })
-    return Post
+    return Comentario
 }
