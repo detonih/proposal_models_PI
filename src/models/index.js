@@ -28,5 +28,9 @@ Favorito.belongsTo(Usuario)
 module.exports = {
   sequelize,
   Usuario,
-  Post
+  Post,
+  Comentario,
+  Curtida,
+  Imagem,
+  Favorito
 }

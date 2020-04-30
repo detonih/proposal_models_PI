@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Comentario = sequelize.define('Comentario', {
+    const Imagem = sequelize.define('Imagem', {
         caminho: {
             type: DataTypes.STRING,
             allowNull: false
@@ -9,5 +9,5 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: true,
         paranoid: true
       })
-    return Comentario
+    return Imagem
 }
