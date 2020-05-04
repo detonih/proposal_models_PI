@@ -1,8 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-    const Curtida = sequelize.define('Curtida', {},
-    {
-        timestamps: true,
-        paranoid: true
-    })
+    const Curtida = sequelize.define('Curtida', {})
     return Curtida
 }

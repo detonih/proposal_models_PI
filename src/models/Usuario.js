@@ -44,10 +44,6 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: ' cannot be null' }
       }
     }
-  },
-  {
-    timestamps: true,
-    paranoid: true
   })
   return Usuario
 }
