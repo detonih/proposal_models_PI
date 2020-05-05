@@ -6,9 +6,12 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./db/:/docker-entrypoint-initdb.d/
+      - database-data:/data/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: proposal_model
       MYSQL_HOST: localhost
     restart: always
+
+volumes:
+  database-data:
