@@ -1,4 +1,4 @@
-const { Usuario } = require('../models')
+const { Usuario, Amigo } = require('../models')
 
 module.exports = {
   index: async (req, res) => {
@@ -19,5 +19,23 @@ module.exports = {
     })
 
     return res.json(usuario)
+  },
+  adicionarAmigo: async (req, res) => {
+    // pegar o id de quem esta logado na session. Aqui simulando pelo params
+    // id do amigo pegar do botão, não sei como uaehauehaue
+    const { usuario_id, amigo_id } = req.params
+    console.log(usuario_id, amigo_id)
+    const user = await Usuario.findByPk(usuario_id)
+
+    if(!user) {
+      return res.status(400).json({ error: 'User not found' })
+    }
+    console.log(amigo_id)
+    const amigo = await Amigo.create({
+      usuario_id,
+      amigo_id
+    })
+
+    return res.json(amigo)
   }
 }

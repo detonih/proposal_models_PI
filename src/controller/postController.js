@@ -1,8 +1,21 @@
 const { Usuario, Post } = require('../models')
 
 module.exports = {
-  index: async (req, res) => {
+  getAllPostsByUser: async (req, res) => {
+    const { usuario_id } = req.params
 
+    const user = await Usuario.findByPk(usuario_id)
+
+    if(!user) {
+      return res.status(400).json({ error: 'User not found' })
+    }
+
+    const posts = await Post.findAll({
+      where: { usuario_id },
+      include: Usuario 
+    })
+
+    return res.json(posts)
   },
 
   store: async (req, res) => {
@@ -10,7 +23,7 @@ module.exports = {
     const { titulo, descricao } = req.body
 
     const user = await Usuario.findByPk(usuario_id)
-    
+
     if(!user) {
       return res.status(400).json({ error: 'User not found' })
     }

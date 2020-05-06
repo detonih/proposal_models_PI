@@ -7,10 +7,10 @@ const Post = require('./Post')(sequelize, DataTypes)
 const Comentario = require('./Comentario')(sequelize, DataTypes)
 const Curtida = require('./Curtida')(sequelize, DataTypes)
 const Imagem = require('./Imagem')(sequelize, DataTypes)
-const Favorito = require('./Favorito')(sequelize, DataTypes)
+const Amigo = require('./Amigos')(sequelize, DataTypes)
 
 Usuario.hasMany(Post, { foreignKey: 'usuario_id' })
-Post.belongsTo(Usuario, { foreignKey: 'user_id'})
+Post.belongsTo(Usuario, { foreignKey: 'usuario_id'})
 
 Post.hasMany(Comentario)
 Comentario.belongsTo(Post)
@@ -21,9 +21,7 @@ Curtida.belongsTo(Post)
 Post.hasMany(Imagem)
 Imagem.belongsTo(Post)
 
-Usuario.hasMany(Favorito)
-Favorito.belongsTo(Usuario)
-
+Usuario.belongsToMany(Usuario, { foreignKey: 'id', through: 'usuarios_amigos', as: 'amigos'})
 
 module.exports = {
   sequelize,
@@ -32,5 +30,5 @@ module.exports = {
   Comentario,
   Curtida,
   Imagem,
-  Favorito
+  Amigo
 }
