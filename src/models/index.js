@@ -9,8 +9,8 @@ const Curtida = require('./Curtida')(sequelize, DataTypes)
 const Imagem = require('./Imagem')(sequelize, DataTypes)
 const Favorito = require('./Favorito')(sequelize, DataTypes)
 
-Usuario.hasMany(Post)
-Post.belongsTo(Usuario)
+Usuario.hasMany(Post, { foreignKey: 'usuario_id' })
+Post.belongsTo(Usuario, { foreignKey: 'user_id'})
 
 Post.hasMany(Comentario)
 Comentario.belongsTo(Post)
