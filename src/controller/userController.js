@@ -1,4 +1,4 @@
-const { Usuario, Amigo } = require('../models')
+const { Usuario } = require('../models')
 
 module.exports = {
   index: async (req, res) => {
@@ -24,18 +24,29 @@ module.exports = {
     // pegar o id de quem esta logado na session. Aqui simulando pelo params
     // id do amigo pegar do botão, não sei como uaehauehaue
     const { usuario_id, amigo_id } = req.params
-    console.log(usuario_id, amigo_id)
-    const user = await Usuario.findByPk(usuario_id)
 
-    if(!user) {
-      return res.status(400).json({ error: 'User not found' })
-    }
-    console.log(amigo_id)
-    const amigo = await Amigo.create({
-      usuario_id,
-      amigo_id
-    })
+    const usuario = await Usuario.findByPk(usuario_id)
 
-    return res.json(amigo)
+    const amigo = await Usuario.findByPk(amigo_id)
+
+    await usuario.addAmigo(amigo)
+
+    return res.json({usuario, amigo})
+  },
+
+  mostrarAmigos: async (req, res) => {
+    // pega o id da session
+    const { usuario_id } = req.params
+
+    /* const todosAmigos = await Usuario.findAll({
+      include: {model: Usuario, as: 'amigo'},
+      through: {model: 'usuarios_amigos', where: {usuario_id}}
+    }) */
+
+    const usuario = await Usuario.findByPk(usuario_id)
+
+    const todosAmigos = await usuario.getAmigo() 
+
+    return res.json(todosAmigos)
   }
 }
