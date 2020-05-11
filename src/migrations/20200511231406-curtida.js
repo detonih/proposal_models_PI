@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('comentarios', { 
+    return queryInterface.createTable('curtidas', { 
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -23,10 +23,6 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      descricao: {
-          type: Sequelize.STRING,
-          allowNull: false
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false
@@ -40,7 +36,7 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
 
-    return queryInterface.dropTable('comentarios');
+    return queryInterface.dropTable('curtidas');
 
   }
 };

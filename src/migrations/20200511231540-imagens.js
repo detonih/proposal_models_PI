@@ -2,11 +2,15 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('comentarios', { 
+    return queryInterface.createTable('imagens', { 
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false
+      },
+      caminho: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       post_id: {
@@ -15,17 +19,6 @@ module.exports = {
         references: { model: 'posts', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
-      },
-      usuario_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'usuarios', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      descricao: {
-          type: Sequelize.STRING,
-          allowNull: false
       },
       created_at: {
         type: Sequelize.DATE,
@@ -40,7 +33,7 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
 
-    return queryInterface.dropTable('comentarios');
+    return queryInterface.dropTable('imagens');
 
   }
 };
