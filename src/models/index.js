@@ -11,7 +11,7 @@ const Imagem = require('./Imagem')(sequelize, DataTypes)
 Usuario.hasMany(Post , { foreignKey: 'usuario_id' })
 Post.belongsTo(Usuario)
 
-Post.hasMany(Comentario)
+Post.hasMany(Comentario, { foreignKey: 'post_id' })
 Comentario.belongsTo(Post)
 
 Post.hasMany(Curtida)

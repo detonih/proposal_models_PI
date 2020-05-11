@@ -43,10 +43,22 @@ module.exports = {
       through: {model: 'usuarios_amigos', where: {usuario_id}}
     }) */
 
-    const usuario = await Usuario.findByPk(usuario_id)
+   /*  const teste1 = await Usuario.findOne({
+      where: { usuario_id },
+      include: {
+        model: Usuario,
+        as: 'amigo'
+      }
+    }) */
 
+    const teste2 = await Usuario.findByPk(usuario_id, {
+      include: ['amigo']
+    })
+
+    const usuario = await Usuario.findByPk(usuario_id)
+    console.log(usuario)
     const todosAmigos = await usuario.getAmigo() 
 
-    return res.json(todosAmigos)
+    return res.json({certo: todosAmigos, teste2: teste2})
   }
 }

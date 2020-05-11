@@ -28,12 +28,20 @@ module.exports = {
       return res.status(400).json({ error: 'User not found' })
     }
 
-    const post = await Post.create({
+    const post = await user.addPosts([{
       usuario_id,
       titulo,
       descricao
-    })
+    }]) // ta dando update
 
-    return res.json(post)
+    const hasPost = await user.countPosts() //funciona
+
+    /* const post = await Post.create({
+      usuario_id,
+      titulo,
+      descricao
+    }) */
+
+    return res.json({post, hasPost})
   }
 }

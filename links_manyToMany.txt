@@ -1,3 +1,5 @@
 https://stackoverflow.com/questions/42596753/many-to-many-self-reference-in-sequelize-in-twitter-like-web-app
 
 https://stackoverflow.com/questions/25363782/how-to-have-a-self-referencing-many-to-many-association-in-sequelize
+
+https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
